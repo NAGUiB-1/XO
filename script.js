@@ -1,4 +1,4 @@
-let boxs = document.querySelectorAll('.box'),
+let boxes = document.querySelectorAll('.box'),
   title = document.querySelector('.title'),
   playAgain = document.querySelector('.pAgain'),
   xScore = document.getElementById('xScore'),
@@ -15,7 +15,7 @@ let win = false
 let main = () => {
 
   // Loop on all boxes
-  boxs.forEach(e => {
+  boxes.forEach(e => {
 
       // add Click evvent for boxes
       e.addEventListener('click', e => {
@@ -29,9 +29,9 @@ let main = () => {
           // Color the Choice
           e.target.classList.add('bg-gray')
           // Run The random and emptyArray
-          random(boxs, embtyArray(boxs))
+          random(boxes, emptyArray(boxes))
           // Run The Check 
-          winCheck(boxs)
+          winCheck(boxes)
           // Run The function to show or hide playAgain butto 
           playAgainFunc()
 
@@ -49,25 +49,177 @@ let main = () => {
 // Run main function
 main()
 
-// add O in Random box depends on the embtyArray
-let random = (boxes, embty) => {
-  len = embty.length
-  rand = embty[Math.floor(Math.random() * len)]
+// add O in Random box depends on the emptyArray
+let random = (boxes, empty) => {
+  len = empty.length
+  rand = empty[Math.floor(Math.random() * len)]
+
+  
   if (len && !win) {
-    boxs[rand].textContent = 'O'
-    boxs[rand].classList.add('bg-red')
+    
+    // Give It Some AI
+    // Handle cell 0
+    if ((
+      boxes[3].textContent === 'X' &&
+      boxes[6].textContent === 'X' &&
+      boxes[0].textContent === ''
+    )||(
+      boxes[4].textContent === 'X' &&
+      boxes[8].textContent === 'X' &&
+      boxes[0].textContent ===''
+      )||(
+      boxes[1].textContent === 'X' &&
+      boxes[2].textContent === 'X' &&
+      boxes[0].textContent === ''
+      )
+   ){
+      boxes[0].textContent = 'O'
+    // Handle Cell 2
+    }else if ((
+      boxes[5].textContent === 'X' &&
+      boxes[8].textContent === 'X' &&
+      boxes[2].textContent === ''
+      )||(
+      boxes[4].textContent === 'X' &&
+      boxes[6].textContent === 'X' &&
+      boxes[2].textContent ===''
+      )|| (
+      boxes[0].textContent === 'X' &&
+      boxes[1].textContent === 'X' &&
+      boxes[2].textContent === ''
+      )
+   ){
+      boxes[2].textContent = 'O'
+    // handle cell 8
+    }else if ((
+      boxes[2].textContent === 'X' &&
+      boxes[5].textContent === 'X' &&
+      boxes[8].textContent === ''
+    )||(
+      boxes[0].textContent === 'X' &&
+      boxes[4].textContent === 'X' &&
+      boxes[8].textContent === ''
+    )|| (
+      boxes[7].textContent === 'X' &&
+      boxes[6].textContent === 'X' &&
+      boxes[8].textContent === ''
+    )
+   ){
+      boxes[8].textContent = 'O'
+    // handle cell 6
+    }else if ((
+      boxes[0].textContent === 'X' &&
+      boxes[3].textContent === 'X' &&
+      boxes[6].textContent === ''
+    )||(
+      boxes[2].textContent === 'X' &&
+      boxes[4].textContent === 'X' &&
+      boxes[6].textContent === ''
+    )|| (
+      boxes[8].textContent === 'X' &&
+      boxes[7].textContent === 'X' &&
+      boxes[6].textContent === ''
+    )
+   ){
+      boxes[6].textContent = 'O'
+    // handle cell 4
+    }else if ((
+      boxes[0].textContent === 'X' &&
+      boxes[8].textContent === 'X' &&
+      boxes[4].textContent === ''
+    )||(
+      boxes[2].textContent === 'X' &&
+      boxes[6].textContent === 'X' &&
+      boxes[4].textContent === ''
+    )||(
+      boxes[1].textContent === 'X' &&
+      boxes[7].textContent === 'X' &&
+      boxes[4].textContent === ''
+    )||(
+      boxes[3].textContent === 'X' &&
+      boxes[5].textContent === 'X' &&
+      boxes[4].textContent === ''
+    )
+   ){
+      boxes[4].textContent = 'O'
+    // handle cell 1
+    }else if ((
+      boxes[0].textContent === 'X' &&
+      boxes[2].textContent === 'X' &&
+      boxes[1].textContent === ''
+    )||(
+      boxes[4].textContent === 'X' &&
+      boxes[7].textContent === 'X' &&
+      boxes[1].textContent === ''
+    )
+   ){
+      boxes[1].textContent = 'O'
+    // handle cell 3
+    }else if ((
+      boxes[0].textContent === 'X' &&
+      boxes[2].textContent === 'X' &&
+      boxes[6].textContent === ''
+    )||(
+      boxes[4].textContent === 'X' &&
+      boxes[5].textContent === 'X' &&
+      boxes[3].textContent === ''
+    )
+   ){
+      boxes[3].textContent = 'O'
+    // handle cell 5
+    }else if ((
+      boxes[2].textContent === 'X' &&
+      boxes[8].textContent === 'X' &&
+      boxes[5].textContent === ''
+    )||(
+      boxes[3].textContent === 'X' &&
+      boxes[4].textContent === 'X' &&
+      boxes[5].textContent === ''
+    )
+   ){
+      boxes[5].textContent = 'O'
+    // handle cell 7
+    }else if ((
+      boxes[6].textContent === 'X' &&
+      boxes[8].textContent === 'X' &&
+      boxes[7].textContent === ''
+    )||(
+      boxes[2].textContent === 'X' &&
+      boxes[4].textContent === 'X' &&
+      boxes[7].textContent === ''
+    )
+   ){
+      boxes[7].textContent = 'O'
+    }
+    
+    
+    
+    
+    else
+    {
+      boxes[rand].textContent = 'O'
+      
+    }
 
   }
+  // Add Color to O
+  boxes.forEach(e=>{
+    if(e.textContent === 'O'){
+      e.classList.add('bg-red')
+    }
+    
+  })
+  
 }
 
 
 
 
-// add all indexes for the embty box in array 
-let embtyArray = boxs => {
+// add all indexes for the empty box in array 
+let emptyArray = boxes => {
   array = []
   i = 0
-  boxs.forEach((e) => {
+  boxes.forEach((e) => {
     if (e.textContent === '') {
       array.push(i)
     } else if (e.textContent === 'X') {
@@ -85,69 +237,69 @@ let embtyArray = boxs => {
 
 
 // This responsible for check who wins
-let winCheck = (boxs) => {
+let winCheck = (boxes) => {
 
   // X Win
   if (
-    boxs[0].innerHTML === 'X' &&
-    boxs[1].innerHTML === 'X' &&
-    boxs[2].innerHTML === 'X'
+    boxes[0].innerHTML === 'X' &&
+    boxes[1].innerHTML === 'X' &&
+    boxes[2].innerHTML === 'X'
   ) {
     title.innerHTML = 'X Win'
     win = true
   }
   else if (
-    boxs[3].innerHTML === 'X' &&
-    boxs[4].innerHTML === 'X' &&
-    boxs[5].innerHTML === 'X'
+    boxes[3].innerHTML === 'X' &&
+    boxes[4].innerHTML === 'X' &&
+    boxes[5].innerHTML === 'X'
   ) {
     title.innerHTML = 'X Win'
     win = true
   }
   else if (
-    boxs[6].innerHTML === 'X' &&
-    boxs[7].innerHTML === 'X' &&
-    boxs[8].innerHTML === 'X'
+    boxes[6].innerHTML === 'X' &&
+    boxes[7].innerHTML === 'X' &&
+    boxes[8].innerHTML === 'X'
   ) {
     title.innerHTML = 'X Win'
     win = true
   }
   else if (
-    boxs[0].innerHTML === 'X' &&
-    boxs[3].innerHTML === 'X' &&
-    boxs[6].innerHTML === 'X'
+    boxes[0].innerHTML === 'X' &&
+    boxes[3].innerHTML === 'X' &&
+    boxes[6].innerHTML === 'X'
   ) {
     title.innerHTML = 'X Win'
     win = true
   }
   else if (
-    boxs[1].innerHTML === 'X' &&
-    boxs[4].innerHTML === 'X' &&
-    boxs[7].innerHTML === 'X'
+    boxes[1].innerHTML === 'X' &&
+    boxes[4].innerHTML === 'X' &&
+    boxes[7].innerHTML === 'X'
   ) {
     title.innerHTML = 'X Win'
     win = true
   }
   else if (
-    boxs[2].innerHTML === 'X' &&
-    boxs[5].innerHTML === 'X' &&
-    boxs[8].innerHTML === 'X'
+    boxes[2].innerHTML === 'X' &&
+    boxes[5].innerHTML === 'X' &&
+    boxes[8].innerHTML === 'X'
   ) {
     title.innerHTML = 'X Win'
     win = true
   }
   else if (
-    boxs[0].innerHTML === 'X' &&
-    boxs[4].innerHTML === 'X' &&
-    boxs[8].innerHTML === 'X'
+    boxes[0].innerHTML === 'X' &&
+    boxes[4].innerHTML === 'X' &&
+    boxes[8].innerHTML === 'X'
   ) {
     title.innerHTML = 'X Win'
     win = true
   }
   else if (
-    boxs[2].innerHTML === 'X' &&
-    boxs[4].innerHTML === 'X' &&
-    boxs[6].innerHTML === 'X'
+    boxes[2].innerHTML === 'X' &&
+    boxes[4].innerHTML === 'X' &&
+    boxes[6].innerHTML === 'X'
   ) {
     title.innerHTML = 'X Win'
     win = true
@@ -156,72 +308,72 @@ let winCheck = (boxs) => {
 
   // O Win
   if (
-    boxs[0].innerHTML === 'O' &&
-    boxs[1].innerHTML === 'O' &&
-    boxs[2].innerHTML === 'O'
+    boxes[0].innerHTML === 'O' &&
+    boxes[1].innerHTML === 'O' &&
+    boxes[2].innerHTML === 'O'
   ) {
     title.innerHTML = 'O Win'
     win = true
   }
   else if (
-    boxs[3].innerHTML === 'O' &&
-    boxs[4].innerHTML === 'O' &&
-    boxs[5].innerHTML === 'O'
+    boxes[3].innerHTML === 'O' &&
+    boxes[4].innerHTML === 'O' &&
+    boxes[5].innerHTML === 'O'
   ) {
     title.innerHTML = 'O Win'
     win = true
   }
   else if (
-    boxs[6].innerHTML === 'O' &&
-    boxs[7].innerHTML === 'O' &&
-    boxs[8].innerHTML === 'O'
+    boxes[6].innerHTML === 'O' &&
+    boxes[7].innerHTML === 'O' &&
+    boxes[8].innerHTML === 'O'
   ) {
     title.innerHTML = 'O Win'
     win = true
   }
   else if (
-    boxs[0].innerHTML === 'O' &&
-    boxs[3].innerHTML === 'O' &&
-    boxs[6].innerHTML === 'O'
+    boxes[0].innerHTML === 'O' &&
+    boxes[3].innerHTML === 'O' &&
+    boxes[6].innerHTML === 'O'
   ) {
     title.innerHTML = 'O Win'
     win = true
   }
   else if (
-    boxs[1].innerHTML === 'O' &&
-    boxs[4].innerHTML === 'O' &&
-    boxs[7].innerHTML === 'O'
+    boxes[1].innerHTML === 'O' &&
+    boxes[4].innerHTML === 'O' &&
+    boxes[7].innerHTML === 'O'
   ) {
     title.innerHTML = 'O Win'
     win = true
   }
   else if (
-    boxs[2].innerHTML === 'O' &&
-    boxs[5].innerHTML === 'O' &&
-    boxs[8].innerHTML === 'O'
+    boxes[2].innerHTML === 'O' &&
+    boxes[5].innerHTML === 'O' &&
+    boxes[8].innerHTML === 'O'
   ) {
     title.innerHTML = 'O Win'
     win = true
   }
   else if (
-    boxs[0].innerHTML === 'O' &&
-    boxs[4].innerHTML === 'O' &&
-    boxs[8].innerHTML === 'O'
+    boxes[0].innerHTML === 'O' &&
+    boxes[4].innerHTML === 'O' &&
+    boxes[8].innerHTML === 'O'
   ) {
     title.innerHTML = 'O Win'
     win = true
   }
   else if (
-    boxs[2].innerHTML === 'O' &&
-    boxs[4].innerHTML === 'O' &&
-    boxs[6].innerHTML === 'O'
+    boxes[2].innerHTML === 'O' &&
+    boxes[4].innerHTML === 'O' &&
+    boxes[6].innerHTML === 'O'
   ) {
     title.innerHTML = 'O Win'
     win = true
   }
 
   // No One Win
-  if (!embtyArray(boxs).length && !win) {
+  if (!emptyArray(boxes).length && !win) {
     title.innerHTML = 'Draw';
     title.classList.add('bg-draw')
   }
@@ -262,7 +414,7 @@ let playAgainFunc = () => {
 playAgain.onclick = function() {
 
   // Loop For Remove boxes Value and colors
-  boxs.forEach(e => {
+  boxes.forEach(e => {
     e.innerHTML = ''
     e.classList.remove('bg-gray')
     e.classList.remove('bg-red')
