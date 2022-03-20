@@ -285,6 +285,8 @@ let checkEndGame = () => {
   if (x + o === 10) {
 
     overlay.classList.add('overlay')
+    overlay.classList.remove('hideOverlay')
+
     if (x > o) {
       overlay.textContent = 'X Win'
     } else if (o > x) {
