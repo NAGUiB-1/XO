@@ -26,6 +26,8 @@ let main = () => {
         ) {
           // add user choice 
           e.target.textContent = 'X';
+          // Win Check
+          winCheck(boxes)
           // Color the Choice
           e.target.classList.add('bg-gray')
           // Run The random and emptyArray
