@@ -26,10 +26,10 @@ let main = () => {
         ) {
           // add user choice 
           e.target.textContent = 'X';
-          // Win Check
-          winCheck(boxes)
           // Color the Choice
           e.target.classList.add('bg-gray')
+          winCheck(boxes)
+
           // Run The random and emptyArray
           random(boxes, emptyArray(boxes))
           // Run The Check 
@@ -159,8 +159,8 @@ let random = (boxes, empty) => {
     // handle cell 3
     }else if ((
       boxes[0].textContent === 'X' &&
-      boxes[2].textContent === 'X' &&
-      boxes[6].textContent === ''
+      boxes[6].textContent === 'X' &&
+      boxes[3].textContent === ''
     )||(
       boxes[4].textContent === 'X' &&
       boxes[5].textContent === 'X' &&
@@ -186,7 +186,7 @@ let random = (boxes, empty) => {
       boxes[8].textContent === 'X' &&
       boxes[7].textContent === ''
     )||(
-      boxes[2].textContent === 'X' &&
+      boxes[1].textContent === 'X' &&
       boxes[4].textContent === 'X' &&
       boxes[7].textContent === ''
     )
