@@ -566,7 +566,7 @@ playAgain.onclick = function() {
 
 
 let checkEndGame = () => {
-  if (x + o === 3) {
+  if (x + o === 10) {
 
     overlay.classList.add('overlay')
     overlay.classList.remove('hideOverlay')
